@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import (SCREEN_HEIGHT,
                         SCREEN_WIDTH,
                         ASTEROID_KINDS, 
@@ -41,6 +42,11 @@ def main():
 
         for object in updatable_group:
             object.update(dt)
+        
+        for asteroid in asteroids_group:
+            if asteroid.check_collision(player):
+                print("GAME OVER!")
+                sys.exit()
 
         dt = clock.tick(60) / 1000
 
